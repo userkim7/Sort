@@ -1,0 +1,63 @@
+from copy import copy
+from random import shuffle
+
+def selection_sort(Data):
+    data=copy(Data)
+    n=len(data)
+    compare_time=0
+    change_time=0
+    for i in range(n):
+        min_idx=i
+        for j in range(i+1,n):
+            compare_time+=1
+            if data[min_idx]>data[j]:
+                change_time+=1
+                data[min_idx],data[j]=data[j],data[min_idx]
+    return (data==sorted(Data),compare_time,change_time)
+        
+def insertion_sort(Data):
+    data=copy(Data)
+    n=len(data)
+    compare_time=0
+    change_time=0
+    for i in range(1,n):
+        key=data[i]
+        j=i-1
+        while j>=0 and data[j]>key:
+            change_time+=1
+            data[j+1]=data[j]
+            j-=1
+        compare_time+=i-j
+        data[j+1]=key
+    return (data==sorted(Data),compare_time,change_time)
+
+def bubble_sort(Data):
+    data=copy(Data)
+    n=len(data)
+    compare_time=0
+    change_time=0
+    for _ in range(n-1):
+        for i in range(n-1):
+            compare_time+=1
+            if data[i]>data[i+1]:
+                change_time+=1
+                data[i],data[i+1]=data[i+1],data[i]
+    return (data==sorted(Data),compare_time,change_time)
+
+
+
+####
+'''
+selection_sort_data=[]
+insertion_sort_data=[]
+bubble_sort_data=[]
+
+d=[x for x in range(1,11)]
+a=copy(d)
+for i in range(10000):
+    shuffle(a)
+    selection_sort_data.append(selection_sort(a))
+    insertion_sort_data.append(insertion_sort(a))
+    bubble_sort_data.append(bubble_sort(a))
+'''
+
